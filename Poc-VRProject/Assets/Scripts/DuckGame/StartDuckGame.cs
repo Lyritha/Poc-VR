@@ -49,8 +49,10 @@ public class StartDuckGame : MonoBehaviour
         for (int i = 0; i < amountOfDucksOnTable; i++)
         {
             Vector3 calculatedPosition = calculateVectorAccordingToAngle(duckTable.transform.position, currentDegree, 2f);
+
             //calc (calc is slang for calculator) the position where duck should be placed twin
-            Instantiate(duckPrefab, calculatedPosition, Quaternion.identity);
+            GameObject thisDuck = Instantiate(duckPrefab, calculatedPosition, Quaternion.identity, duckTable.transform);
+            //make the duck a child of the rotating table
             currentDegree += degreesPerDuck;
         }
         //place ducks on table in a circle or something.
