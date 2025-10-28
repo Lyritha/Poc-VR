@@ -7,13 +7,10 @@ public class RotateTable : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     GameObject duckTable;
     bool rotateTable = false;
-    float rotateSpeed = 20f;
-    List<GameObject> duckList;
+    float rotateSpeed = 40f;
     void Start()
     {
-        duckList = new List<GameObject>();
         duckTable = gameObject;
-        StartCoroutine(waitRotateTable());
     }
 
     // Update is called once per frame
@@ -38,7 +35,7 @@ public class RotateTable : MonoBehaviour
 
     public IEnumerator waitRotateTable()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         ChangeTableRotateStatusTo(true);
     }
 }

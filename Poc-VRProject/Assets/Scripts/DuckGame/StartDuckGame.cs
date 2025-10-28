@@ -9,7 +9,7 @@ public class StartDuckGame : MonoBehaviour
     [SerializeField] GameObject duckPrefab;
     RotateTable tableRotationScript;
     List<GameObject> ducksOnTable = new List<GameObject>();
-    int amountOfDucksOnTable = 6;
+    public int amountOfDucksOnTable = 10;
     public bool testSpawns = false;
 
     GameObject thisButtonObject;
@@ -46,16 +46,17 @@ public class StartDuckGame : MonoBehaviour
     {
         float degreesPerDuck = 360 / amountOfDucksOnTable;
         float currentDegree = 0;
-        for (int i = 0; i < amountOfDucksOnTable; i++)
+        float mainOffset = 2.60f;
+
+        for (int y = 0; y < amountOfDucksOnTable; y++)
         {
-            Vector3 calculatedPosition = calculateVectorAccordingToAngle(duckTable.transform.position, currentDegree, 2f);
+            Vector3 calculatedPosition = calculateVectorAccordingToAngle(duckTable.transform.position, currentDegree,mainOffset);
 
             //calc (calc is slang for calculator) the position where duck should be placed twin
             GameObject thisDuck = Instantiate(duckPrefab, calculatedPosition, Quaternion.identity, duckTable.transform);
-            //make the duck a child of the rotating table
             currentDegree += degreesPerDuck;
+            ducksOnTable.Add(thisDuck);
         }
-        //place ducks on table in a circle or something.
     }
 
     Vector3 calculateVectorAccordingToAngle(Vector3 beginPoint, float angle, float distance)
@@ -71,5 +72,6 @@ public class StartDuckGame : MonoBehaviour
         {
             GameObject.Destroy(duck);
         }
+        tableRotationScript.ChangeTableRotateStatusTo(false);
     }
 }
