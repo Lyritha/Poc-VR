@@ -24,7 +24,7 @@ public class SkeeBall : MonoBehaviour
     {
         SkeeBallMachine.Instance.RemoveBall();
 
-        Destroy(this, 10);
+        Destroy(gameObject, 10);
     }
 
     void OnTriggerEnter(Collider other)
