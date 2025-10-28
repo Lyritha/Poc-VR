@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4082606651950143903}
   - component: {fileID: 6407146856444468779}
   - component: {fileID: 7518946307825548065}
-  - component: {fileID: 9032529152917927854}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -112,19 +111,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9032529152917927854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7523933934377166434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78fa75a17b5e54d428e9a0a619e5987f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SkeeBall
-  grabbableString: {fileID: 3645331560286483750}
 --- !u!1 &8598393053005259001
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,6 +125,7 @@ GameObject:
   - component: {fileID: 1660046644253761293}
   - component: {fileID: 3645331560286483750}
   - component: {fileID: 6479442094685768966}
+  - component: {fileID: 7331250757193565801}
   m_Layer: 0
   m_Name: GrabbableBall
   m_TagString: Untagged
@@ -189,7 +176,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8598393053005259001}
   serializedVersion: 5
-  m_Mass: 68
+  m_Mass: 40
   m_LinearDamping: 0.1
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -294,3 +281,16 @@ MonoBehaviour:
   _releaseDistance: 0
   _resetGrabOnGrabsUpdated: 1
   _physicsGrabbable: {fileID: 0}
+--- !u!114 &7331250757193565801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8598393053005259001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78fa75a17b5e54d428e9a0a619e5987f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkeeBall
+  grabbableString: {fileID: 3645331560286483750}
