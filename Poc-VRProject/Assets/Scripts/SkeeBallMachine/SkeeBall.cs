@@ -5,6 +5,7 @@ using UnityEngine;
 public class SkeeBall : MonoBehaviour
 {
     [SerializeField] HandGrabInteractable grabbableString;
+    [SerializeField] Rigidbody rb;
  
     private void Awake()
     {
@@ -20,12 +21,18 @@ public class SkeeBall : MonoBehaviour
         grabbableString.WhenSelectingInteractorRemoved.Action -= OnGrabEnd;
     }
  
-    private void OnGrabEnd(IInteractor interactor)
+    void OnGrabEnd(IInteractor interactor)
     {
         SkeeBallMachine.Instance.RemoveBall();
+        Rigidbody handRb = ((MonoBehaviour)interactor).GetComponent<Rigidbody>();
+
+        float velocityMultiplier = 2f;
+        rb.linearVelocity = handRb.linearVelocity * velocityMultiplier;
+        rb.angularVelocity = handRb.angularVelocity * velocityMultiplier;
 
         Destroy(gameObject, 10);
     }
+
 
     void OnTriggerEnter(Collider other)
     {
