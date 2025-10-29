@@ -1531,7 +1531,7 @@ MonoBehaviour:
   spawnCansScript: {fileID: 1402744941}
   textManagerScript: {fileID: 1281512814}
   balSpawnerScript: {fileID: 1700292737}
-  gameDuration: 30
+  gameDuration: 60
   gameIsActive: 0
 --- !u!1 &961778041
 GameObject:
@@ -2351,7 +2351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16a34968bc535964e8753a5758f18529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BalSpawner
-  balPrefab: {fileID: 3445625533961106969, guid: 8468bccd53a24aa40b1d6da111669790, type: 3}
+  balPrefab: {fileID: 3492139395305762173, guid: c0db1e1d89255724fb9fcb5c2a242b5e, type: 3}
   SpawnPos: {fileID: 651149596}
 --- !u!1 &1738278373
 GameObject:
