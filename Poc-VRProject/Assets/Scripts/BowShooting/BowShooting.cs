@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +18,7 @@ public class BowShooting : MonoBehaviour
     [SerializeField]
     private Bow bowPrefab;
 
+    [SerializeField]
     private int roundScore = 0;
 
 
@@ -32,7 +34,7 @@ public class BowShooting : MonoBehaviour
     {
         if (bow != null)
         {
-            bow.Initialize(this, arrowCount);
+            bow.Initialize(this, 0);
             bowStartPos = bow.transform.position;
             bowStartRot = bow.transform.rotation;
         }
@@ -53,12 +55,17 @@ public class BowShooting : MonoBehaviour
         roundScore = 0;
         timer = gameDuration;
         isPlaying = true;
+
+
+        Destroy(bow.gameObject);
+        bow = Instantiate(bowPrefab, bowStartPos, bowStartRot);
         bow.Initialize(this, arrowCount);
     }
 
     public void EndGame()
     {
         isPlaying = false;
+
         Destroy(bow.gameObject);
         bow = Instantiate(bowPrefab, bowStartPos, bowStartRot);
 
@@ -66,11 +73,5 @@ public class BowShooting : MonoBehaviour
     }
 
 
-
-
-
-    public void AddScore(int count)
-    {
-        roundScore += count;
-    }
+    public void AddScore(int count) => roundScore += count;
 }

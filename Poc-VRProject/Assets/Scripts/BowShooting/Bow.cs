@@ -15,6 +15,8 @@ public class Bow : MonoBehaviour
     private Transform stringTransform;
     [SerializeField]
     private Arrow arrowPrefab;
+    [SerializeField]
+    private Animator bowAnimator;
 
 
     [SerializeField]
@@ -68,6 +70,15 @@ public class Bow : MonoBehaviour
         initialLocalStringPosition = bowTransform.InverseTransformPoint(stringTransform.position);
     }
 
+    private void Update()
+    {
+        float distance = Vector3.Distance(stringTransform.position, bowTransform.position);
+        float pullAmount = Mathf.InverseLerp(startDistance, startDistance + 0.5f, distance);
+        pullAmount = Mathf.Clamp01(pullAmount);
+
+        bowAnimator.SetFloat("PullAmount", pullAmount);
+    }
+
     private void FireArrow()
     {
         // Disable all interactables
@@ -80,7 +91,7 @@ public class Bow : MonoBehaviour
         distance -= startDistance;
 
         // fire arrow logic would go here
-        Arrow arrow = Instantiate(arrowPrefab, bowTransform.position, bowTransform.rotation);
+        Arrow arrow = Instantiate(arrowPrefab, transform.position, transform.rotation);
         arrows.Add(arrow);
 
         if (arrows.Count > 10)
