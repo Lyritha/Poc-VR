@@ -5,10 +5,12 @@ using UnityEngine;
 public class SkeeBall : MonoBehaviour
 {
     [SerializeField] HandGrabInteractable grabbableString;
+    SkeeBallMachine skeeBallMachine;
     [SerializeField] Rigidbody rb;
 
     private void Awake()
     {
+        skeeBallMachine = FindFirstObjectByType<SkeeBallMachine>();
         if (grabbableString == null) return;
         grabbableString.WhenSelectingInteractorRemoved.Action += OnGrabEnd;
     }
@@ -21,11 +23,9 @@ public class SkeeBall : MonoBehaviour
 
     void OnGrabEnd(IInteractor interactor)
     {
-        // Verdubbel de snelheid direct nadat de speler de bal loslaat
-        rb.linearVelocity *= 20f;
+        rb.linearVelocity *= 25f;
 
-        // Daarna doe je je andere acties
-        SkeeBallMachine.Instance.RemoveBall();
+        skeeBallMachine.RemoveBall();
         Destroy(gameObject, 10);
     }
 
@@ -33,8 +33,12 @@ public class SkeeBall : MonoBehaviour
     {
         if (other.TryGetComponent<Points>(out Points points))
         {
-            SkeeBallMachine.Instance.AddTotalPoints(points.GetPoints());
+            skeeBallMachine.AddTotalPoints(points.GetPoints());
             print(points.GetPoints());
+        }
+        else if (other.GetComponent<RampDetector>())
+        {
+            rb.linearVelocity *= 3;
         }
     }
 }

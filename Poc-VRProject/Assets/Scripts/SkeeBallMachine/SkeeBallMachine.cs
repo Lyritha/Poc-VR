@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SkeeBallMachine : UnitySingleton<SkeeBallMachine>
+public class SkeeBallMachine : MonoBehaviour
 {
     [SerializeField] UpdatePointText updatePointText;
     [SerializeField] GameObject ballObject;
