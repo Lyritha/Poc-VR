@@ -518,7 +518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 156f70f914385e94aa15b405449140b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Target
-  scoreManager: {fileID: 0}
+  scoreManager: {fileID: 1464954049}
 --- !u!136 &367213557
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1818,7 +1818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 156f70f914385e94aa15b405449140b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Target
-  scoreManager: {fileID: 0}
+  scoreManager: {fileID: 1464954049}
 --- !u!136 &1300884781
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2603,7 +2603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 156f70f914385e94aa15b405449140b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Target
-  scoreManager: {fileID: 0}
+  scoreManager: {fileID: 1464954049}
 --- !u!114 &1641852837
 MonoBehaviour:
   m_ObjectHideFlags: 0
