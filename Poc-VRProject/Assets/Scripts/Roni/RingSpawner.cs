@@ -6,7 +6,7 @@ public class RingSpawner : MonoBehaviour
     public int ringCount = 5; 
     public Transform spawnPoint; 
 
-    public float spacing = 0.3f; 
+    public float spacing = 0.5f; 
 
     void Start()
     {

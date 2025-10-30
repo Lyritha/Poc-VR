@@ -8,11 +8,9 @@ public class Target : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print("Alkan");
         if (other)
         {
-            print("test");
-            scoreManager.AddScore(50);
+            scoreManager.AddScore(20);
             //other.gameObject.transform.position = transform.position + new Vector3(0, 0.1f, 0);
         }
     }
