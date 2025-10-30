@@ -8,6 +8,7 @@ public class CanTossGameManager : MonoBehaviour
     [SerializeField] TextManager textManagerScript;
     [SerializeField] BalSpawner balSpawnerScript;
     [SerializeField] float gameDuration;
+    [SerializeField] int scorePerTicket;
     public static CanTossGameManager Instance;
     public bool gameIsActive = false;
 
@@ -42,7 +43,7 @@ public class CanTossGameManager : MonoBehaviour
     }
     private void EndGame()
     {
-        TicketManager.Instance.AddTicket(score / 100);
+        TicketManager.Instance.AddTicket(score / scorePerTicket);
         ResetScore();
         balSpawnerScript.DeleteExistingBalls();
         spawnCansScript.DestroyExistingCans();

@@ -1531,7 +1531,8 @@ MonoBehaviour:
   spawnCansScript: {fileID: 1402744941}
   textManagerScript: {fileID: 1281512814}
   balSpawnerScript: {fileID: 1700292737}
-  gameDuration: 60
+  gameDuration: 30
+  scorePerTicket: 50
   gameIsActive: 0
 --- !u!1 &961778041
 GameObject:
