@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 5040780041889060803}
   - component: {fileID: 4878509573038034964}
   - component: {fileID: 1207446268294572847}
-  - component: {fileID: 1146936849058008037}
-  - component: {fileID: 6240741200258469921}
+  - component: {fileID: 1971814320128559795}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -147,7 +146,7 @@ MonoBehaviour:
   _movementProvider: {fileID: 0}
   _handAligment: 1
   _handGrabPoses: []
---- !u!114 &1146936849058008037
+--- !u!114 &1971814320128559795
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -156,42 +155,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3492139395305762173}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03156b97297f5d645bba4f09e719ad66, type: 3}
+  m_Script: {fileID: 11500000, guid: 19132b87d34962441a8a3fd729797f5f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DestroyTest
---- !u!114 &6240741200258469921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3492139395305762173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 171ef1e79d77ce64e85c8bc81a880eb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GetInput
-  OnButtonPressed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1146936849058008037}
-        m_TargetAssemblyTypeName: DestroyTest, Assembly-CSharp
-        m_MethodName: DestroyObject
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnButtonReleased:
-    m_PersistentCalls:
-      m_Calls: []
-  targetButton: 8192
-  targetController: 1
-  grabbable: {fileID: 1207446268294572847}
+  m_EditorClassIdentifier: Assembly-CSharp::AddThrowPower
+  grabbableString: {fileID: 1207446268294572847}
+  rb: {fileID: 5040780041889060803}
+  power: 2
 --- !u!1 &5970172837013642893
 GameObject:
   m_ObjectHideFlags: 0
