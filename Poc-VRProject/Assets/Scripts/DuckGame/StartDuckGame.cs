@@ -50,7 +50,7 @@ public class StartDuckGame : MonoBehaviour
 
         for (int y = 0; y < amountOfDucksOnTable; y++)
         {
-            Vector3 calculatedPosition = calculateVectorAccordingToAngle(duckTable.transform.position, currentDegree,mainOffset);
+            Vector3 calculatedPosition = calculateVectorAccordingToAngle(duckTable.transform.position, currentDegree, mainOffset);
 
             //calc (calc is slang for calculator) the position where duck should be placed twin
             GameObject thisDuck = Instantiate(duckPrefab, calculatedPosition, Quaternion.identity, duckTable.transform);
@@ -73,5 +73,10 @@ public class StartDuckGame : MonoBehaviour
             GameObject.Destroy(duck);
         }
         tableRotationScript.ChangeTableRotateStatusTo(false);
+    }
+
+    public List<GameObject> TellAllDucksOnTable()
+    {
+        return ducksOnTable;
     }
 }

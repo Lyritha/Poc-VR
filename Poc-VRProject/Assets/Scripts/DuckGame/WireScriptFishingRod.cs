@@ -3,7 +3,7 @@ using UnityEngine;
 public class WireScriptFishingRod : MonoBehaviour
 {
     GameObject wirePointFishingRod;
-    [SerializeField] GameObject wirePointEndPoint;
+    [SerializeField] GameObject floater;
     int wireSegmentCount = 3;
     float wireDanglingEffectStrongness = 0.3f;
     LineRenderer fishingLine;
@@ -25,7 +25,8 @@ public class WireScriptFishingRod : MonoBehaviour
     void Update()
     {
         posA = wirePointFishingRod.transform.position;
-        posB = wirePointEndPoint.transform.position;
+        KeepFloaterInDistance(1f, posA, floater);
+        posB = floater.transform.position;
 
         for (int i = 0; i < wireSegmentCount; i++)
         {
@@ -33,17 +34,22 @@ public class WireScriptFishingRod : MonoBehaviour
             if(i == wireSegmentCount-1) currentPoint = posB;
             fishingLine.SetPosition(i,currentPoint);
         }
-        KeepFloaterInDistance(1.5f, posA,wirePointEndPoint);
     }
 
 
     void KeepFloaterInDistance(float radius, Vector3 posA, GameObject floater)
-    {
-        float distance = Vector3.Distance(posA, floater.transform.position);
+    { 
+        //berekend hoever de dobber van de maximale waarde is
+        Vector3 overshootOfFloater = floater.transform.position - posA;
+        float distance = overshootOfFloater.magnitude;
+
         if(distance >= radius)
         {
-            Vector3 richting = (floater.transform.position- posA).normalized;
-            floater.transform.position = posA + richting * radius;
+            Vector3 dir = -overshootOfFloater;
+            float actualOvershoot = distance - radius;
+
+            float power = actualOvershoot * 2f;
+            floater.GetComponent<Rigidbody>().AddForce(dir * power);
         }
     }
 }
