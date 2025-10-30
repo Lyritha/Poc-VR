@@ -24,10 +24,7 @@ public class CanTossGameManager : MonoBehaviour
 
         Instance = this;
     }
-    private void Start()
-    {
-        StartGame();
-    }
+
     public void StartGame()
     {
         //End the game thats already in progress

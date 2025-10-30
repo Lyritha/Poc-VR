@@ -40,9 +40,4 @@ public class Interactable : MonoBehaviour
         }
     }
 
-    [ContextMenu("Fake select")]
-    public void TestButton()
-    {
-        OnStateSelect?.Invoke();
-    }
 }
