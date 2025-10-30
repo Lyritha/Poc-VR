@@ -1694,36 +1694,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4580672647052020522, guid: e17aa8472ad1d1449b6c00a593d74816, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580672647052020522, guid: e17aa8472ad1d1449b6c00a593d74816, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.248
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580672647052020522, guid: e17aa8472ad1d1449b6c00a593d74816, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.754
+      objectReference: {fileID: 0}
     - target: {fileID: 5359297224524298109, guid: e17aa8472ad1d1449b6c00a593d74816, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.19
-      objectReference: {fileID: 0}
-    - target: {fileID: 7252019928892451005, guid: e17aa8472ad1d1449b6c00a593d74816, type: 3}
-      propertyPath: m_Mass
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7252019928892451005, guid: e17aa8472ad1d1449b6c00a593d74816, type: 3}
-      propertyPath: m_LinearDamping
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8130050399526030406, guid: e17aa8472ad1d1449b6c00a593d74816, type: 3}
       propertyPath: m_Name
       value: rod
       objectReference: {fileID: 0}
-    - target: {fileID: 9135987705555496420, guid: e17aa8472ad1d1449b6c00a593d74816, type: 3}
-      propertyPath: floater
-      value: 
-      objectReference: {fileID: 1200927962}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e17aa8472ad1d1449b6c00a593d74816, type: 3}
---- !u!1 &1200927962 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2647181668591111885, guid: e17aa8472ad1d1449b6c00a593d74816, type: 3}
-  m_PrefabInstance: {fileID: 1200927961}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1207827116
 GameObject:
   m_ObjectHideFlags: 0

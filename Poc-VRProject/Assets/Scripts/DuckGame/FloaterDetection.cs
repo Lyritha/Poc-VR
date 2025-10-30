@@ -1,3 +1,4 @@
+using Oculus.Interaction;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,12 +19,13 @@ public class FloaterDetection : MonoBehaviour
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
         List<GameObject> ducksOnTable = gameScript.TellAllDucksOnTable();
         foreach (GameObject duck in ducksOnTable)
         {
-            if (collision.gameObject == duck.gameObject)
+            if (other.gameObject == duck.gameObject)
             {
                 TryCatchGameobject(duck);
             }
@@ -34,9 +36,10 @@ public class FloaterDetection : MonoBehaviour
     {
         if (canCatch == true)
         {
-            toCatch.transform.parent = floater.transform;
+            toCatch.GetComponent<Rigidbody>().isKinematic = true;
+            toCatch.transform.SetParent(floater.transform, true);
             currentCatch = toCatch;
-            toCatch.transform.localPosition = floater.transform.localPosition;
+            toCatch.transform.position = floater.transform.position;
             canCatch = false;
         }
     }
