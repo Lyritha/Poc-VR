@@ -32,7 +32,7 @@ public class Bow : MonoBehaviour
     private bool isGrabbed = false;
     private List<Arrow> arrows = new();
     private int currentArrowCount = 0;
-
+    private Arrow currentArrow;
 
     private BowShooting parent;
     public void Initialize(BowShooting parent, int count)
@@ -63,7 +63,25 @@ public class Bow : MonoBehaviour
         grabbableString.WhenSelectingInteractorRemoved.Action -= OnGrabEnd;
     }
 
-    private void OnGrabBegin(IInteractor interactor) => isGrabbed = true;
+    private void OnGrabBegin(IInteractor interactor)
+    {
+        if (currentArrowCount <= 0) return;
+
+        currentArrow = Instantiate(arrowPrefab, stringTransform);
+        currentArrow.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        arrows.Add(currentArrow);
+
+        if (arrows.Count > 10)
+        {
+            Arrow oldest = arrows[0];
+            if (oldest != null) Destroy(oldest.gameObject);
+
+            arrows.RemoveAt(0);
+        }
+
+        isGrabbed = true;
+    }
+
     private void OnGrabEnd(IInteractor interactor)
     {
         isGrabbed = false;
@@ -89,12 +107,15 @@ public class Bow : MonoBehaviour
 
     private void FireArrow()
     {
-        // Disable all interactables
-        StartCoroutine(FrameDelay());
+        StartCoroutine(SetStringPosition());
+
+        if (currentArrow == null) return;
 
         currentArrowCount--;
+
         if (currentArrowCount <= 0)
         {
+            arrowCount.text = $"No Arrows Left";
             StartCoroutine(EndDelay());
             return;
         }
@@ -102,27 +123,16 @@ public class Bow : MonoBehaviour
         float distance = Vector3.Distance(stringTransform.position, bowTransform.position);
         distance -= startDistance;
 
+        arrowCount.text = $"Arrows Left: {currentArrowCount}";
         Vector3 shootDirection = (bowTransform.position - stringTransform.position).normalized;
 
-        // fire arrow logic would go here
-        Arrow arrow = Instantiate(arrowPrefab, transform.position, Quaternion.Euler(shootDirection));
-        arrows.Add(arrow);
-
-        if (arrows.Count > 10)
-        {
-            Arrow oldest = arrows[0];
-            if (oldest != null) Destroy(oldest.gameObject);
-
-            arrows.RemoveAt(0);
-        }
-
-        arrowCount.text = $"Arrows Left: {currentArrowCount}";
-
-        Rigidbody rb = arrow.GetComponent<Rigidbody>();
+        currentArrow.transform.SetParent(null);
+        Rigidbody rb = currentArrow.GetComponent<Rigidbody>();
+        rb.isKinematic = false;
         rb.AddForce(shootDirection * (distance * 50f));
     }
 
-    private IEnumerator FrameDelay()
+    private IEnumerator SetStringPosition()
     {
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();

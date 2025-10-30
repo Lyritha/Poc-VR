@@ -13,7 +13,7 @@ public class Arrow : MonoBehaviour
         if (rb.isKinematic) return;
 
         if (rb.linearVelocity.sqrMagnitude > 0.001f)
-            transform.rotation = Quaternion.LookRotation(rb.linearVelocity.normalized, transform.up);
+            transform.rotation = Quaternion.LookRotation(rb.linearVelocity.normalized) * Quaternion.Euler(0, -90, 0);
     }
 
     private void OnCollisionEnter(Collision collision)

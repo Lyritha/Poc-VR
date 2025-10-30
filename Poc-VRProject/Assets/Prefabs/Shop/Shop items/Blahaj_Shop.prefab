@@ -391,7 +391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12943d53c1739e8489a2748a8d251215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PurchasableItem
-  ticketCost: 30
+  ticketCost: 50
   purchasedItemPrefab: {fileID: 1549309937830617327, guid: 1e78642719d4b0141b6026557e68c0a0, type: 3}
   price: {fileID: 8817283855669035430}
 --- !u!114 &7238927743598568026
