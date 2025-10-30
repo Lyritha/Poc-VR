@@ -2203,7 +2203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnCans
   rows: 4
-  can: {fileID: 7434693027323074208, guid: 18a292beefb3d214585ffc1b8c416985, type: 3}
+  can: {fileID: 7434693027323074208, guid: 30d559b30cbffd74bb86de4bccc381d9, type: 3}
   spawnPoint: {fileID: 431998226}
 --- !u!1001 &1546618212
 PrefabInstance:
@@ -2351,7 +2351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16a34968bc535964e8753a5758f18529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BalSpawner
-  balPrefab: {fileID: 3492139395305762173, guid: c0db1e1d89255724fb9fcb5c2a242b5e, type: 3}
+  balPrefab: {fileID: 3492139395305762173, guid: 10e17e391e9b6704ba82ac561c087111, type: 3}
   SpawnPos: {fileID: 651149596}
 --- !u!1 &1738278373
 GameObject:
