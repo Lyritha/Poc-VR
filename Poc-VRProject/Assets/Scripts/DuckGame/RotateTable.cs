@@ -33,7 +33,7 @@ public class RotateTable : MonoBehaviour
         rotateTable = status;
     }
 
-    public IEnumerator waitRotateTable()
+    public IEnumerator WaitRotateTable()
     {
         yield return new WaitForSeconds(1.5f);
         ChangeTableRotateStatusTo(true);

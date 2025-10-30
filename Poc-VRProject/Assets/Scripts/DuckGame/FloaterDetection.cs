@@ -1,12 +1,13 @@
 using Oculus.Interaction;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class FloaterDetection : MonoBehaviour
 {
     GameObject floater;
-    [SerializeField]GameObject minigameManager;
-    StartDuckGame gameScript;
+    [SerializeField] GameObject minigameManager;
+    DuckGameManager gameScript;
 
     public GameObject currentCatch;
 
@@ -40,13 +41,28 @@ public class FloaterDetection : MonoBehaviour
             currentCatch = toCatch;
             toCatch.transform.position = floater.transform.position;
             canCatch = false;
+            GivePoints(toCatch);
         }
     }
 
-    public void setMinigameManagerObject(GameObject manager)
+    public void SetMinigameManagerObject(GameObject manager)
     {
         minigameManager = manager;
-        gameScript = minigameManager.GetComponent<StartDuckGame>();
+        gameScript = minigameManager.GetComponent<DuckGameManager>();
     }
 
+    void GivePoints(GameObject duck)
+    {
+        TicketManager.Instance.AddTicket(5);
+        StartCoroutine(WaitForSec(1.5f, duck));
+    }
+
+    IEnumerator WaitForSec(float sec, GameObject duck)
+    {
+        canCatch = false;
+        yield return new WaitForSeconds(sec);
+        GameObject.Destroy(duck);
+        currentCatch = null;
+        canCatch = true;
+    }
 }

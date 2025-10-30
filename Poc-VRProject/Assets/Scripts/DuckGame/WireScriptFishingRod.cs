@@ -5,8 +5,8 @@ public class WireScriptFishingRod : MonoBehaviour
     GameObject wirePointFishingRod;
     [SerializeField] GameObject floater;
     int wireSegmentCount = 3;
-    float wireDanglingEffectStrongness = 0.3f;
     LineRenderer fishingLine;
+    float LineLenght = 1f;
 
     public Vector3 posA;
     public Vector3 posB;
@@ -25,7 +25,7 @@ public class WireScriptFishingRod : MonoBehaviour
     void Update()
     {
         posA = wirePointFishingRod.transform.position;
-        KeepFloaterInDistance(1f, posA, floater);
+        KeepFloaterInDistance(LineLenght, posA, floater);
         posB = floater.transform.position;
 
         for (int i = 0; i < wireSegmentCount; i++)
@@ -48,7 +48,7 @@ public class WireScriptFishingRod : MonoBehaviour
             Vector3 dir = -overshootOfFloater;
             float actualOvershoot = distance - radius;
 
-            float power = actualOvershoot * 2f;
+            float power = actualOvershoot * 8f;
             floater.GetComponent<Rigidbody>().AddForce(dir * power);
         }
     }

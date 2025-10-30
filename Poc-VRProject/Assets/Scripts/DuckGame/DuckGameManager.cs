@@ -1,22 +1,31 @@
+using Meta.Voice;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class StartDuckGame : MonoBehaviour
+public class DuckGameManager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] GameObject duckTable;
     [SerializeField] GameObject duckPrefab;
     [SerializeField] GameObject fishingRod;
-
+    GameObject thisButtonObject;
     GameObject ActiveFishingRod;
 
-    RotateTable tableRotationScript;
     List<GameObject> ducksOnTable = new List<GameObject>();
-    public int amountOfDucksOnTable = 10;
-    public bool testSpawns = false;
 
-    GameObject thisButtonObject;
+    RotateTable tableRotationScript;
+
+    public int amountOfDucksOnTable = 20;
+    public int timePlayerGets = 30;
+    public bool testSpawns = false;
+    public bool gameIsActive = false;
+
+    public float currentAmountOfTimeLeft = 0;
+
+
     void Start()
     {
         thisButtonObject = gameObject;
@@ -28,26 +37,33 @@ public class StartDuckGame : MonoBehaviour
     {
         if (testSpawns == true)
         {
-            pressStartButton();
+            //or if button gets pressed
+            PressStartButton();
             testSpawns = false;
+        }
+
+        if (gameIsActive == true)
+        {
+            RemoveTimeFromTimer();
         }
     }
 
-    void pressStartButton()
+    public void PressStartButton()
     {
-        removeAllDucksFromTable();
-        placeDucksOnTable();
-        instantiateFishingRod();
-        StartCoroutine(tableRotationScript.waitRotateTable());
+        RemoveAllDucksFromTable();
+        PlaceDucksOnTable();
+        InstantiateFishingRod();
+        StartCoroutine(tableRotationScript.WaitRotateTable());
+        ActivateTimer();
     }
 
-    public void stopTableGame()
+    public void StopTableGame()
     {
         tableRotationScript.ChangeTableRotateStatusTo(false);
-        removeAllDucksFromTable();
+        RemoveAllDucksFromTable();
     }
 
-    void placeDucksOnTable()
+    void PlaceDucksOnTable()
     {
         float degreesPerDuck = 360 / amountOfDucksOnTable;
         float currentDegree = 0;
@@ -55,7 +71,7 @@ public class StartDuckGame : MonoBehaviour
 
         for (int y = 0; y < amountOfDucksOnTable; y++)
         {
-            Vector3 calculatedPosition = calculateVectorAccordingToAngle(duckTable.transform.position, currentDegree, mainOffset);
+            Vector3 calculatedPosition = CalculateVectorAccordingToAngle(duckTable.transform.position, currentDegree, mainOffset);
 
             //calc (calc is slang for calculator) the position where duck should be placed twin
             GameObject thisDuck = Instantiate(duckPrefab, calculatedPosition, Quaternion.identity, duckTable.transform);
@@ -64,14 +80,14 @@ public class StartDuckGame : MonoBehaviour
         }
     }
 
-    Vector3 calculateVectorAccordingToAngle(Vector3 beginPoint, float angle, float distance)
+    Vector3 CalculateVectorAccordingToAngle(Vector3 beginPoint, float angle, float distance)
     {
         Quaternion rotation = Quaternion.Euler(0, angle, 0);
         Vector3 calculatedPosition = beginPoint + rotation * (Vector3.forward * distance);
         return calculatedPosition;
     }
 
-    void removeAllDucksFromTable()
+    void RemoveAllDucksFromTable()
     {
         foreach (GameObject duck in ducksOnTable)
         {
@@ -85,17 +101,38 @@ public class StartDuckGame : MonoBehaviour
         return ducksOnTable;
     }
 
-    void instantiateFishingRod()
+    void InstantiateFishingRod()
     {
         if (ActiveFishingRod == null)
         {
+            Vector3 offsetSpawnPosition = new Vector3(gameObject.transform.position.x, (gameObject.transform.position.y + 0.25f), (gameObject.transform.position.z - 1));
             //create the object
-            GameObject newRod = GameObject.Instantiate(fishingRod);
+            GameObject newRod = GameObject.Instantiate(fishingRod, offsetSpawnPosition, Quaternion.identity);
+            // Instantiate(Object original, Vector3 position, Quaternion rotation);
             //get script references from referenceScript.GiveReferences and pick index 1 (floaterscript)
-            GameObject floater = newRod.GetComponent<ReferenceScripts>().giveReferencesToMainScript()[1];
+            GameObject floater = newRod.GetComponent<ReferenceScripts>().GiveReferencesToMainScript()[1];
             //give the floater script this gameobject 
-            floater.GetComponent<FloaterDetection>().setMinigameManagerObject(gameObject);
+            floater.GetComponent<FloaterDetection>().SetMinigameManagerObject(gameObject);
             ActiveFishingRod = newRod;
+        }
+    }
+
+    void ActivateTimer()
+    {
+        currentAmountOfTimeLeft = timePlayerGets;
+        gameIsActive = true;
+    }
+
+    void RemoveTimeFromTimer()
+    {
+        if (currentAmountOfTimeLeft > 0)
+        {
+            currentAmountOfTimeLeft -= Time.deltaTime;
+        }
+        else
+        {
+            gameIsActive = false;
+            RemoveAllDucksFromTable();
         }
     }
 }
