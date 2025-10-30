@@ -501,7 +501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6025e34fbc6e4145af4b154127bf4a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HighlightCollider
-  outlineThickness: 0.05
+  outlineThickness: 0.02
   mat: {fileID: 2100000, guid: 900d472579451f74e8fe8bd1519af8e9, type: 2}
   mesh: {fileID: 8542042613862316554, guid: 6e6187a3bc8b0b24dbc0d521e63792a2, type: 3}
 --- !u!1001 &7698728942111507635

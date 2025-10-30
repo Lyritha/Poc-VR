@@ -2,6 +2,7 @@ using Oculus.Interaction;
 using Oculus.Interaction.HandGrab;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Bow : MonoBehaviour
@@ -17,6 +18,10 @@ public class Bow : MonoBehaviour
     private Arrow arrowPrefab;
     [SerializeField]
     private Animator bowAnimator;
+    [SerializeField]
+    private TMP_Text arrowCount;
+    [SerializeField]
+    private RectTransform uiArrowCount;
 
 
     [SerializeField]
@@ -34,6 +39,9 @@ public class Bow : MonoBehaviour
     {
         this.parent = parent;
         currentArrowCount = count;
+
+        bool activate = currentArrowCount > 0;
+        uiArrowCount.gameObject.SetActive(activate);
     }
 
     private void Awake()
@@ -84,14 +92,20 @@ public class Bow : MonoBehaviour
         // Disable all interactables
         StartCoroutine(FrameDelay());
 
-        if (currentArrowCount == 0) return;
         currentArrowCount--;
+        if (currentArrowCount <= 0)
+        {
+            StartCoroutine(EndDelay());
+            return;
+        }
 
         float distance = Vector3.Distance(stringTransform.position, bowTransform.position);
         distance -= startDistance;
 
+        Vector3 shootDirection = (bowTransform.position - stringTransform.position).normalized;
+
         // fire arrow logic would go here
-        Arrow arrow = Instantiate(arrowPrefab, transform.position, transform.rotation);
+        Arrow arrow = Instantiate(arrowPrefab, transform.position, Quaternion.Euler(shootDirection));
         arrows.Add(arrow);
 
         if (arrows.Count > 10)
@@ -102,12 +116,10 @@ public class Bow : MonoBehaviour
             arrows.RemoveAt(0);
         }
 
+        arrowCount.text = $"Arrows Left: {currentArrowCount}";
+
         Rigidbody rb = arrow.GetComponent<Rigidbody>();
-        Vector3 shootDirection = (bowTransform.position - stringTransform.position).normalized;
         rb.AddForce(shootDirection * (distance * 50f));
-
-
-        if (currentArrowCount <= 0) StartCoroutine(EndDelay());
     }
 
     private IEnumerator FrameDelay()
@@ -120,7 +132,7 @@ public class Bow : MonoBehaviour
 
     private IEnumerator EndDelay()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2);
         parent.EndGame();
     }
 }
