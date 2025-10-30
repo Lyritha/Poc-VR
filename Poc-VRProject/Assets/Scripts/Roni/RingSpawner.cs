@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class RingSpawner : MonoBehaviour
 {
-    public GameObject ringPrefab; // link hier je Ring prefab
-    public int ringCount = 5; // aantal ringen
-    public Transform spawnPoint; // waar de ringen verschijnen
+    public GameObject ringPrefab; 
+    public int ringCount = 5; 
+    public Transform spawnPoint; 
 
-    public float spacing = 0.3f; // afstand tussen ringen
+    public float spacing = 0.3f; 
 
     void Start()
     {
