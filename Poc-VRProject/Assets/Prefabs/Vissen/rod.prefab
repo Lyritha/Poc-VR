@@ -1195,6 +1195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3136448610852750752}
+  - component: {fileID: 2883766335257916034}
   m_Layer: 0
   m_Name: rod
   m_TagString: Untagged
@@ -1219,3 +1220,17 @@ Transform:
   - {fileID: 4580672647052020522}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2883766335257916034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8130050399526030406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4263cfd8c1619c4b910269c26a6cdeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ReferenceScripts
+  rodEnd: {fileID: 5419525814158016367}
+  floater: {fileID: 2647181668591111885}

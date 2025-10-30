@@ -5,7 +5,7 @@ using UnityEngine;
 public class FloaterDetection : MonoBehaviour
 {
     GameObject floater;
-    [SerializeField] GameObject minigameManager;
+    [SerializeField]GameObject minigameManager;
     StartDuckGame gameScript;
 
     public GameObject currentCatch;
@@ -15,7 +15,6 @@ public class FloaterDetection : MonoBehaviour
     private void Start()
     {
         floater = gameObject;
-        gameScript = minigameManager.GetComponent<StartDuckGame>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -42,6 +41,12 @@ public class FloaterDetection : MonoBehaviour
             toCatch.transform.position = floater.transform.position;
             canCatch = false;
         }
+    }
+
+    public void setMinigameManagerObject(GameObject manager)
+    {
+        minigameManager = manager;
+        gameScript = minigameManager.GetComponent<StartDuckGame>();
     }
 
 }

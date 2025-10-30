@@ -7,6 +7,10 @@ public class StartDuckGame : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] GameObject duckTable;
     [SerializeField] GameObject duckPrefab;
+    [SerializeField] GameObject fishingRod;
+
+    GameObject ActiveFishingRod;
+
     RotateTable tableRotationScript;
     List<GameObject> ducksOnTable = new List<GameObject>();
     public int amountOfDucksOnTable = 10;
@@ -33,6 +37,7 @@ public class StartDuckGame : MonoBehaviour
     {
         removeAllDucksFromTable();
         placeDucksOnTable();
+        instantiateFishingRod();
         StartCoroutine(tableRotationScript.waitRotateTable());
     }
 
@@ -78,5 +83,19 @@ public class StartDuckGame : MonoBehaviour
     public List<GameObject> TellAllDucksOnTable()
     {
         return ducksOnTable;
+    }
+
+    void instantiateFishingRod()
+    {
+        if (ActiveFishingRod == null)
+        {
+            //create the object
+            GameObject newRod = GameObject.Instantiate(fishingRod);
+            //get script references from referenceScript.GiveReferences and pick index 1 (floaterscript)
+            GameObject floater = newRod.GetComponent<ReferenceScripts>().giveReferencesToMainScript()[1];
+            //give the floater script this gameobject 
+            floater.GetComponent<FloaterDetection>().setMinigameManagerObject(gameObject);
+            ActiveFishingRod = newRod;
+        }
     }
 }
