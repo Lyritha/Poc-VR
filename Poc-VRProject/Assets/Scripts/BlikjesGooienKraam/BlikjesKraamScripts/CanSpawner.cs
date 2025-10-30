@@ -31,7 +31,7 @@ public class CanSpawner : MonoBehaviour
         }
     }
 
-    private void DestroyExistingCans()
+    public void DestroyExistingCans()
     {
         foreach(GameObject o in cans)
         {

@@ -17,7 +17,7 @@ public class BalSpawner : MonoBehaviour
         }
     }
 
-    private void DeleteExistingBalls()
+    public void DeleteExistingBalls()
     {
         foreach(GameObject o in bal)
         {

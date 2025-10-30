@@ -23,8 +23,17 @@ public class CanTossGameManager : MonoBehaviour
 
         Instance = this;
     }
+    private void Start()
+    {
+        StartGame();
+    }
     public void StartGame()
     {
+        //End the game thats already in progress
+        if(gameIsActive == true)
+        {
+            EndGame();
+        }
         gameIsActive = true;
         spawnCansScript.RespawnCans();
         balSpawnerScript.RespawnBalls();
@@ -35,6 +44,8 @@ public class CanTossGameManager : MonoBehaviour
     {
         TicketManager.Instance.AddTicket(score / 100);
         ResetScore();
+        balSpawnerScript.DeleteExistingBalls();
+        spawnCansScript.DestroyExistingCans();
         gameIsActive = false;
     }
  
