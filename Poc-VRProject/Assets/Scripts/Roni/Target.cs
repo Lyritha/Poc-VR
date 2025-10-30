@@ -1,3 +1,4 @@
+using Oculus.Interaction;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,14 +6,15 @@ public class Target : MonoBehaviour
 {
     public ScoreManager scoreManager;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Ring"))
+        print("Alkan");
+        if (other)
         {
-            scoreManager.AddScore(1);
-            Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
-            rb.isKinematic = true; 
-            collision.gameObject.transform.position = transform.position + new Vector3(0, 0.1f, 0);
+            print("test");
+            scoreManager.AddScore(50);
+            //other.gameObject.transform.position = transform.position + new Vector3(0, 0.1f, 0);
         }
     }
+
 }

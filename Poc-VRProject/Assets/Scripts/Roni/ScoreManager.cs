@@ -14,6 +14,7 @@ public class ScoreManager : MonoBehaviour
 
     public void AddScore(int points)
     {
+        TicketManager.Instance.AddTicket(points);
         score += points;
         UpdateScoreUI();
     }
