@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 127d96fd6c8607f4c96f61a77e47a1bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BlikCheck
-  setTextScoreScript: {fileID: 0}
+  textManagerScript: {fileID: 0}
 --- !u!54 &3182288900261004508
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -113,7 +113,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7434693027323074208}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 0.038
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
