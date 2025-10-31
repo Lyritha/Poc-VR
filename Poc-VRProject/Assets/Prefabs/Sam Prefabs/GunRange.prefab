@@ -1083,7 +1083,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6276540593274104833, guid: 1a9a268a4c41b5e488e5a639b48d7d2a, type: 3}
+    - {fileID: 5798081012047412250, guid: 1a9a268a4c41b5e488e5a639b48d7d2a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1107,12 +1109,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 3453500034240601992}
     m_Modifications:
     - target: {fileID: 2813745170738937838, guid: 68791c0a818d81549a93c3ccddb1f834, type: 3}
+      propertyPath: launchAngle
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 2813745170738937838, guid: 68791c0a818d81549a93c3ccddb1f834, type: 3}
+      propertyPath: launchForce
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2813745170738937838, guid: 68791c0a818d81549a93c3ccddb1f834, type: 3}
+      propertyPath: scoreManagerGun
+      value: 
+      objectReference: {fileID: 8387966893764517520}
+    - target: {fileID: 2813745170738937838, guid: 68791c0a818d81549a93c3ccddb1f834, type: 3}
       propertyPath: spawnAreaCenter.x
-      value: -21.81
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2813745170738937838, guid: 68791c0a818d81549a93c3ccddb1f834, type: 3}
       propertyPath: spawnAreaCenter.z
-      value: 10.41
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 5104142269827602329, guid: 68791c0a818d81549a93c3ccddb1f834, type: 3}
       propertyPath: m_LocalPosition.x
