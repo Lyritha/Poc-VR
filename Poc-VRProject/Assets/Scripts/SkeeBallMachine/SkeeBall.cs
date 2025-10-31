@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SkeeBall : MonoBehaviour
 {
+    [SerializeField] float addSpeed = 5;
     [SerializeField] HandGrabInteractable grabbableString;
     SkeeBallMachine skeeBallMachine;
     [SerializeField] Rigidbody rb;
@@ -32,7 +33,7 @@ public class SkeeBall : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
-        rb.linearVelocity *= 5;
+        rb.linearVelocity *= addSpeed;
     }
 
     void OnTriggerEnter(Collider other)
@@ -42,10 +43,6 @@ public class SkeeBall : MonoBehaviour
             TicketManager.Instance.AddTicket(points.GetPoints());
             skeeBallMachine.AddTotalPoints(points.GetPoints());
             Destroy(gameObject, 0.5f);
-        }
-        else if (other.TryGetComponent<RampDetector>(out RampDetector rampDetector))
-        {
-            rb.linearVelocity *= rampDetector.addSpeed;
         }
     }
 }
