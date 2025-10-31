@@ -127,6 +127,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1429054808424158810, guid: 76bfaee63c1615d44abd679daa113032, type: 3}
+      propertyPath: OnStateSelect.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1429054808424158810, guid: 76bfaee63c1615d44abd679daa113032, type: 3}
+      propertyPath: OnStateSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1429054808424158810, guid: 76bfaee63c1615d44abd679daa113032, type: 3}
+      propertyPath: OnStateSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1464954051}
+    - target: {fileID: 1429054808424158810, guid: 76bfaee63c1615d44abd679daa113032, type: 3}
+      propertyPath: OnStateSelect.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1429054808424158810, guid: 76bfaee63c1615d44abd679daa113032, type: 3}
+      propertyPath: OnStateSelect.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 1429054808424158810, guid: 76bfaee63c1615d44abd679daa113032, type: 3}
+      propertyPath: OnStateSelect.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1429054808424158810, guid: 76bfaee63c1615d44abd679daa113032, type: 3}
+      propertyPath: OnStateSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2637844652653491394, guid: 76bfaee63c1615d44abd679daa113032, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.01
@@ -2109,6 +2137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1464954050}
   - component: {fileID: 1464954049}
+  - component: {fileID: 1464954051}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2147,6 +2176,20 @@ Transform:
   - {fileID: 347124414}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1464954051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464954048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c7e2031023d6424fbc39acfb4af588d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  ringSpawner: {fileID: 347124413}
+  scoreManager: {fileID: 1464954049}
 --- !u!1 &1521314387
 GameObject:
   m_ObjectHideFlags: 0
@@ -2757,7 +2800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4ffcc39c0027884095ef20e85bc278b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TicketManager
-  startingTickets: 100
+  startingTickets: 0
 --- !u!4 &1696846808
 Transform:
   m_ObjectHideFlags: 0

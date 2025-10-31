@@ -6,7 +6,7 @@ public class TicketManager : UnitySingleton<TicketManager>
     public event Action<int> OnTicketCountChanged;
 
     [SerializeField]
-    private int startingTickets = 100;
+    private int startingTickets = 0;
 
     private int ticketCount = 0;
     public int TicketCount => ticketCount;
