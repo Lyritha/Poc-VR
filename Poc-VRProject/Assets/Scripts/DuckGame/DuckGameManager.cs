@@ -1,6 +1,8 @@
 using Meta.Voice;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -17,6 +19,8 @@ public class DuckGameManager : MonoBehaviour
     List<GameObject> ducksOnTable = new List<GameObject>();
 
     RotateTable tableRotationScript;
+
+    [SerializeField]TMP_Text timerValueText;
 
     public int amountOfDucksOnTable = 20;
     public int timePlayerGets = 30;
@@ -134,5 +138,6 @@ public class DuckGameManager : MonoBehaviour
             gameIsActive = false;
             RemoveAllDucksFromTable();
         }
+        timerValueText.text = (MathF.Round(currentAmountOfTimeLeft)).ToString();
     }
 }
