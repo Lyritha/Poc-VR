@@ -16,16 +16,25 @@ public class CanSpawner : MonoBehaviour
         for (int row = 0; row < rows; row++)
         {
             int cansInRow = rows - row;
-
+            //Calculeer de spawnpositie tenopzichte van de groote en de breedte van de blikjes
             float startX = spawnPoint.position.x - ((cansInRow - 1) * canWidth / 2f);
             float y = spawnPoint.localScale.y + spawnPoint.position.y + canHeight + (row * (canHeight * 2));
 
             for (int i = 0; i < cansInRow; i++)
             {
                 float x = startX + (i * canWidth);
-                Vector3 spawnPos = new Vector3(x, y, spawnPoint.position.z);
+                float yPos = y;
 
-                GameObject canObject =Instantiate(can, spawnPos, Quaternion.identity);
+                // Offset t.o.v. spawnPoint
+                Vector3 offset = new Vector3(x - spawnPoint.position.x, yPos - spawnPoint.position.y, 0f);
+
+                // Roteer de offset met parentrotatie
+                Vector3 rotatedOffset = spawnPoint.parent.rotation * offset;
+
+                // Voeg spawnPoint positie toe
+                Vector3 spawnPos = spawnPoint.position + rotatedOffset;
+
+                GameObject canObject = Instantiate(can, spawnPos, Quaternion.identity);
                 cans.Add(canObject);
             }
         }
