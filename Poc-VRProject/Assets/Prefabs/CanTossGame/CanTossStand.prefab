@@ -1407,8 +1407,8 @@ MonoBehaviour:
   OnStateSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: BowShooting, Assembly-CSharp
+      - m_Target: {fileID: 8901164378333968055}
+        m_TargetAssemblyTypeName: CanTossGameManager, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
