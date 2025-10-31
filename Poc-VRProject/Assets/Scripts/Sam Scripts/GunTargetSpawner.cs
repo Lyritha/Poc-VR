@@ -16,15 +16,37 @@ public class GunTargetSpawner : MonoBehaviour
     [Header("Launch Settings")]
     [SerializeField] private float launchAngle = 30f; // degrees sideways from forward
 
-    private void Start()
+    [SerializeField] private ScoreManagerGun scoreManagerGun;
+    public bool gameStarted = false;
+    public int spawnCount = 10;
+
+    private void Update()
     {
-        StartCoroutine(SpawnRoutine());
+        if (gameStarted == true)
+        {
+            scoreManagerGun.score = 0;
+            spawnCount = 10;
+            gameStarted = false;
+            StartCoroutine(SpawnRoutine());
+        }
     }
 
     private IEnumerator SpawnRoutine()
     {
-        while (true)
+        yield return new WaitForSeconds(2);
+        scoreManagerGun.scoreText.text = "Go!";
+        while (spawnCount >= 0)
         {
+            if (spawnCount <= 0)
+            {
+                if (scoreManagerGun.scoreText != null)
+                {
+                    scoreManagerGun.scoreText.text = "Game Over Score: " + scoreManagerGun.score;
+                    scoreManagerGun.EndGame();
+                }
+                gameStarted = false;
+                break;
+            }
             SpawnTarget();
             yield return new WaitForSeconds(spawnInterval);
         }
@@ -32,6 +54,8 @@ public class GunTargetSpawner : MonoBehaviour
 
     private void SpawnTarget()
     {
+        spawnCount--;
+
         // Random spawn position inside spawn area
         Vector3 spawnPos = new Vector3(
             spawnAreaCenter.x + Random.Range(-spawnAreaSize.x / 2f, spawnAreaSize.x / 2f),
@@ -46,11 +70,12 @@ public class GunTargetSpawner : MonoBehaviour
 
         // Launch sideways at an angle
         float radians = launchAngle * Mathf.Deg2Rad;
-        Vector3 launchDir = new Vector3(Mathf.Sin(radians), 0.5f, Mathf.Cos(radians)).normalized;
+        Vector3 launchDir = new Vector3(Mathf.Sin(radians), 0.7f, Mathf.Cos(radians)).normalized;
         // 0.5 in Y to still give a bit of lift
 
         rb.AddForce(launchDir * launchForce, ForceMode.Impulse);
 
         Destroy(target, targetLifetime);
     }
+
 }

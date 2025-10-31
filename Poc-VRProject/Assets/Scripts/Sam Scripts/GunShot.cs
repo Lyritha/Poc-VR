@@ -14,6 +14,7 @@ public class GunShot : MonoBehaviour
     [SerializeField] private TrailRenderer bulletTrail;
     [SerializeField] private LayerMask mask;
     [SerializeField] private GameObject particles;
+    [SerializeField] private AudioSource shotSound;
 
     private float lastShootTime;
 
@@ -21,6 +22,8 @@ public class GunShot : MonoBehaviour
     {
         particles.SetActive(false);
         particles.SetActive(true);
+
+        shotSound.Play();
 
         if (lastShootTime + shootDelay <= Time.time)
         {
@@ -84,5 +87,10 @@ public class GunShot : MonoBehaviour
 
         trail.transform.position = targetPoint;
         Destroy(trail.gameObject, trail.time);
+    }
+
+    public void SelfDestruct()
+    {
+        Destroy(transform.parent.gameObject);
     }
 }

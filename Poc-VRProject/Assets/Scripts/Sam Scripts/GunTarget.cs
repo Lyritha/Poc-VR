@@ -4,14 +4,15 @@ using UnityEngine.SceneManagement;
 public class GunTarget : MonoBehaviour
 {
     [SerializeField] private Color hitColor = Color.red;
-    [SerializeField] private float flashTime = 0.1f; // flash for 0.1s
+    [SerializeField] private float flashTime = 0.1f;
+    [SerializeField] private AudioSource hitSound;
 
     private Renderer rend;
     private Color originalColor;
 
     private void Start()
     {
-        Destroy(gameObject, 10f);
+        Destroy(gameObject, 3f);
     }
     private void Awake()
     {
@@ -30,9 +31,10 @@ public class GunTarget : MonoBehaviour
 
     private System.Collections.IEnumerator FlashAndDestroy()
     {
+        hitSound.Play();
         rend.material.color = hitColor;
         yield return new WaitForSeconds(flashTime);
-        Destroy(gameObject); // destroy after flash
-        ScoreManagerGun.Instance.AddScore(100);
+        Destroy(gameObject);
+        ScoreManagerGun.Instance.AddScore(2);
     }
 }
