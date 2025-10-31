@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class SkeeBallMachine : MonoBehaviour
@@ -6,15 +7,12 @@ public class SkeeBallMachine : MonoBehaviour
     [SerializeField] GameObject ballObject;
     [SerializeField] Transform ballSpawnPoint;
 
+    bool canStartGame = true;
+
     int totalPoints = 0;
 
     int ballCount = 0;
     int maxBallCount = 6;
-
-    void Start()
-    {
-        SpawnAllBalls();
-    }
 
     public void AddTotalPoints(int pPoints)
     {
@@ -27,21 +25,17 @@ public class SkeeBallMachine : MonoBehaviour
         totalPoints = 0;
         updatePointText.UpdateText(totalPoints);
     }
-
-    public void RemoveBall()
-    {
-        ballCount--;
-        if (ballCount <= 0)
-        {
-            GiveTickets();
-        }
-    }
     
     public void ResetBallCount() => ballCount = maxBallCount;
 
     void SpawnAllBalls()
     {
         ResetTotalPoints();
+        SkeeBall[] allActiveBalls = FindObjectsByType<SkeeBall>(FindObjectsSortMode.None);
+        foreach (var ball in allActiveBalls)
+        {
+            Destroy(ball.gameObject);
+        }
         for (int i = 0; i < maxBallCount; i++)
         {
             Invoke("SpawnBall", 0.5f * i);
@@ -53,9 +47,20 @@ public class SkeeBallMachine : MonoBehaviour
         GameObject newBallObject = Instantiate(ballObject);
         newBallObject.transform.position = ballSpawnPoint.position;
     }
-    
-    void GiveTickets()
+
+    public void StartGame()
     {
-        TicketManager.Instance.AddTicket(totalPoints);
+        if (!canStartGame) return;
+        canStartGame = false;
+        StartCoroutine(StartGameTimer());
+        SpawnAllBalls();
+        ResetBallCount();
+        ResetTotalPoints();
+    }
+
+    IEnumerator StartGameTimer()
+    {
+        yield return new WaitForSeconds(5f);
+        canStartGame = true;
     }
 }

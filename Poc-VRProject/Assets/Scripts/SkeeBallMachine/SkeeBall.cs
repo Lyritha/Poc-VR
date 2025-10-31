@@ -1,3 +1,4 @@
+using System.Collections;
 using Oculus.Interaction;
 using Oculus.Interaction.HandGrab;
 using UnityEngine;
@@ -23,22 +24,28 @@ public class SkeeBall : MonoBehaviour
 
     void OnGrabEnd(IInteractor interactor)
     {
-        rb.linearVelocity *= 25f;
-
-        skeeBallMachine.RemoveBall();
+        StartCoroutine(AddForceToBall());
         Destroy(gameObject, 10);
+    }
+
+    IEnumerator AddForceToBall()
+    {
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        rb.linearVelocity *= 5;
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<Points>(out Points points))
         {
+            TicketManager.Instance.AddTicket(points.GetPoints());
             skeeBallMachine.AddTotalPoints(points.GetPoints());
-            print(points.GetPoints());
+            Destroy(gameObject, 0.5f);
         }
-        else if (other.GetComponent<RampDetector>())
+        else if (other.TryGetComponent<RampDetector>(out RampDetector rampDetector))
         {
-            rb.linearVelocity *= 3;
+            rb.linearVelocity *= rampDetector.addSpeed;
         }
     }
 }

@@ -39,4 +39,10 @@ public class Interactable : MonoBehaviour
                 break;
         }
     }
+
+    [ContextMenu("Start Button")]
+    public void StartButton()
+    {
+        OnStateSelect?.Invoke();
+    }
 }
