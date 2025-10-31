@@ -23,7 +23,7 @@ public class HighlightCollider : MonoBehaviour
     {
         if (visualMesh != null) return;
 
-        Vector3 parentScale = transform.lossyScale;
+        Vector3 parentScale = visualMesh.transform.lossyScale;
 
 
         visualMesh = new GameObject("ColliderHighlightMesh");
