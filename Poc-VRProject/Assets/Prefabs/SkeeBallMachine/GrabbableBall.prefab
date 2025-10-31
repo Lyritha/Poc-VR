@@ -293,5 +293,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fa75a17b5e54d428e9a0a619e5987f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkeeBall
+  addSpeed: 2.5
   grabbableString: {fileID: 3645331560286483750}
   rb: {fileID: 653823606111320249}
